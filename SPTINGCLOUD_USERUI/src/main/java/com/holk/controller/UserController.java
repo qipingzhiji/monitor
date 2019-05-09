@@ -25,6 +25,5 @@ public class UserController {
             return "redirect:/login.html";
         }
 
-
     }
 }

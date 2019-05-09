@@ -3,6 +3,7 @@ package com.holk.controller;
 import com.holk.entity.Comm;
 import com.holk.entity.Result;
 import com.holk.mapper.UserMapper;
+import com.holk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -18,28 +19,16 @@ public class UserController {
     @Value("${server.port}")
     String port;
 
-    @Resource
-    UserMapper userMapper;
+    @Autowired
+    private UserService userService;
+
     @PostMapping(value="/validateUser")
     public Result validateUser(@RequestBody Comm comm){
-        List<Map> maps = userMapper.queryUser(comm.getId(), comm.getStore());
-        Result  r=new Result();
-        if(maps.size()>0){
-            r.setCode(1);
-            r.setMsg("请输入正确的数值");
-        }
-        return r;
+        return userService.validateUser(comm);
     }
 
     @GetMapping("/getInfo")
-    public String getServerPort(@RequestParam String name, final String id){
-        List<Map> paramList = userMapper.queryUserById(id);
-
-        paramList.stream().forEach(m-> {
-            System.out.println(m.get("id") + "..." + m.get("store"));
-        });
-
-        System.out.println(name+",this from server port is:"+port);
-        return name+",this from server port is:"+port;
+    public String getServerPort(@RequestParam String name, @RequestParam String id){
+        return userService.getServerPort(name, id, port);
     }
 }
