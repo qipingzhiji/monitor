@@ -13,4 +13,7 @@ public interface UserMapper {
     @Select("select * from comm where id=#{id} and store=#{store}")
     public List<Map> queryUser(@Param("id")String id, @Param("store") String store);
 
+    @Select("select * from comm where id = #{id}")
+    public List<Map> queryUserById(@Param("id") String id);
+
 }
