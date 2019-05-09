@@ -31,9 +31,9 @@ public class UserServiceImpl implements UserService {
     public String getServerPort(String name, String id, String port) {
         List<Map> paramList = userMapper.queryUserById(id);
 
-        paramList.stream().forEach(m-> {
-            System.out.println(m.get("id") + "..." + m.get("store"));
-        });
+//        paramList.stream().forEach(m-> {
+//            System.out.println(m.get("id") + "..." + m.get("store"));
+//        });
 
         System.out.println(name+",this from server port is:"+port);
         return name+",this from server port is:"+port;
