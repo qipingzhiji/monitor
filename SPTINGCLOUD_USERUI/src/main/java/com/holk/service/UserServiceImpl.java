@@ -11,7 +11,7 @@ public class UserServiceImpl implements UserService{
     private FeginClient feginClient;
 
     @Override
-    @HystrixCommand(fallbackMethod = "getInfoError")
+    @HystrixCommand(fallbackMethod = "getInfoError")//ribbon使用断路器的方式
     public String getInfo(String name, String id) {
         return feginClient.showInfo(name,id);
     }

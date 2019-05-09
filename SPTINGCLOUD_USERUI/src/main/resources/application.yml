@@ -1,6 +1,10 @@
 spring:
   application:
     name: userui
+#在feign中开启断路器
+feign:
+  hystirx:
+  enabled: true
 server:
   port: 8074
 eureka:

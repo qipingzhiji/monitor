@@ -1,11 +1,12 @@
 package com.holk.fegin.client;
 
+import com.holk.HiHystric.SchedualServiceHiHystric;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient("userservice")//此注解代表开启fegin的负载均衡
+@FeignClient(value = "userservice", fallback = SchedualServiceHiHystric.class)//此注解代表开启fegin的负载均衡
 public interface FeginClient {
 
     /**
